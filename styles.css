@@ -117,3 +117,8 @@ ul#todoList::-webkit-scrollbar-thumb {
   background-color: #bdc3c7;
   border-radius: 4px;
 }
+
+.done span {
+  text-decoration: line-through;
+  color: #888;
+}

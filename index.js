@@ -21,18 +21,33 @@ app.get('/api/todos', (req, res) => {
   }
 });
 
+// Add new task with done = false
 app.post('/api/todos', (req, res) => {
   try {
     const { text } = req.body;
-    if (!text) return res.status(400).json({ error: 'Task text missing' });
-
     const data = fs.readFileSync(todosFile, 'utf-8') || '[]';
     const todos = JSON.parse(data);
-    todos.push({ text });
+    todos.push({ text, done: false });  // ← added `done`
     fs.writeFileSync(todosFile, JSON.stringify(todos, null, 2));
     res.status(201).json({ message: 'Task added.' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to save todo.' });
+  }
+});
+
+// ✅ PATCH route to toggle completion
+app.patch('/api/todos/:index', (req, res) => {
+  try {
+    const index = parseInt(req.params.index);
+    const data = fs.readFileSync(todosFile, 'utf-8') || '[]';
+    const todos = JSON.parse(data);
+
+    todos[index].done = !todos[index].done;  // toggle done
+    fs.writeFileSync(todosFile, JSON.stringify(todos, null, 2));
+
+    res.json({ message: 'Task updated' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update task' });
   }
 });
 

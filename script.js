@@ -23,11 +23,25 @@ form.addEventListener('submit', async (e) => {
 async function fetchTodos() {
   const res = await fetch('/api/todos');
   const todos = await res.json();
+
+  const list = document.getElementById('todoList');
   list.innerHTML = '';
 
   todos.forEach((todo, index) => {
     const li = document.createElement('li');
-    li.textContent = todo.text;
+    li.className = todo.done ? 'done' : '';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = todo.done;
+
+    checkbox.onchange = async () => {
+      await fetch(`/api/todos/${index}`, { method: 'PATCH' });
+      fetchTodos();
+    };
+
+    const span = document.createElement('span');
+    span.textContent = todo.text;
 
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
@@ -36,9 +50,12 @@ async function fetchTodos() {
       fetchTodos();
     };
 
+    li.appendChild(checkbox);
+    li.appendChild(span);
     li.appendChild(delBtn);
     list.appendChild(li);
   });
 }
+
 
 fetchTodos();
