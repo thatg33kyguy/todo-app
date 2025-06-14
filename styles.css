@@ -1,0 +1,117 @@
+/* Reset and base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #333;
+}
+
+/* Container */
+.container {
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading */
+.container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+/* Form */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #3498db;
+}
+
+button[type="submit"] {
+  background-color: #3498db;
+  border: none;
+  padding: 10px 16px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Todo List */
+ul#todoList {
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+ul#todoList li {
+  background-color: #ecf0f1;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+ul#todoList li:hover {
+  background-color: #dfe6e9;
+}
+
+ul#todoList button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+ul#todoList button:hover {
+  color: #c0392b;
+}
+
+/* Scrollbar for list */
+ul#todoList::-webkit-scrollbar {
+  width: 6px;
+}
+ul#todoList::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7;
+  border-radius: 4px;
+}
